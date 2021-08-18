@@ -1,15 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDom from 'react-dom';
 
-const index = 0;
+class Clock extends Component {
+  render() {
+    return (
+      <div>
+        <h1 className="heading">
+          <span>
+            This is a Clock {new Date().toLocaleTimeString(this.props.locale)}
+          </span>
+          <img src="" alt="" />
+        </h1>
+      </div>
+    );
+  }
+}
 
-setInterval(() => {
-  const element = (
-    <h1 className="heading" tabIndex={index}>
-      <span>this is span tag {new Date().toLocaleTimeString()} </span>
-      <img src="" alt="" />
-    </h1>
-  );
-
-  ReactDom.render(element, document.getElementById('root'));
-}, 1000);
+ReactDom.render(<Clock locale="bn-BD" />, document.getElementById('root'));
