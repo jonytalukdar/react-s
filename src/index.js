@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-const element = React.createElement('h1', null, 'hello world');
+const index = 0;
 
-const App = () => {
-  return <h2>This is app component</h2>;
-};
+setInterval(() => {
+  const element = (
+    <h1 className="heading" tabIndex={index}>
+      <span>this is span tag {new Date().toLocaleTimeString()} </span>
+      <img src="" alt="" />
+    </h1>
+  );
 
-ReactDom.render(element, document.getElementById('root'));
+  ReactDom.render(element, document.getElementById('root'));
+}, 1000);
