@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-
-class App extends Component {
-  render() {
-    console.log('app comonent render');
-    return (
-      <div>
-        <h1>hello</h1>
-      </div>
-    );
-  }
-}
+import React from 'react';
+import TaskTracker from './components/TaskTracker/App';
+const App = () => {
+  return (
+    <>
+      <TaskTracker />
+    </>
+  );
+};
 
 export default App;
