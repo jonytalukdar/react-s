@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AddTask from './AddTask';
 import Header from './Header';
 import './style.css';
@@ -26,10 +26,22 @@ const tasksData = [
 ];
 
 const App = () => {
-  const [tasks, setTasks] = useState(tasksData);
+  const [tasks, setTasks] = useState([]);
   const [showAddTask, setShowAddTask] = useState(false);
 
+  useEffect(() => {
+    fetch('http://localhost:5000/tasks')
+      .then((res) => res.json())
+      .then((data) => {
+        setTasks(data);
+      });
+  }, []);
+
   const deleteTask = (id) => {
+    fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'DELETE',
+    });
+
     const removedTask = tasks.filter((task) => id !== task.id);
     setTasks(removedTask);
   };
@@ -43,9 +55,19 @@ const App = () => {
   };
 
   const addTask = (taskData) => {
-    setTasks((prevState) => {
-      return [taskData, ...prevState];
-    });
+    fetch('http://localhost:5000/tasks', {
+      method: 'POST',
+      body: JSON.stringify(taskData),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setTasks((prevState) => {
+          return [data, ...prevState];
+        });
+      });
   };
 
   const showToggle = () => {

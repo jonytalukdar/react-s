@@ -18,7 +18,7 @@ const Header = ({ title, onShowToggle, showTask }) => {
 Header.propTypes = {
   title: PropTypes.string,
   onShowToggle: PropTypes.func.isRequired,
-  showAddTask: PropTypes.bool.isRequired,
+  showAddTask: PropTypes.bool,
 };
 
 export default Header;

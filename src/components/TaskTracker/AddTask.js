@@ -21,7 +21,6 @@ const AddTask = ({ onTask }) => {
   const addTask = (e) => {
     e.preventDefault();
     const taskData = {
-      id: Math.random().toString(),
       text: task,
       day: date,
       reminder: reminder,
@@ -61,7 +60,7 @@ const AddTask = ({ onTask }) => {
           onChange={reminderHandler}
         />
       </div>
-      <button className="btn btn-block" type="submit" disabled>
+      <button className="btn btn-block" type="submit" disabled={!task}>
         Save
       </button>
     </form>

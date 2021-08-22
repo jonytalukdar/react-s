@@ -54,6 +54,12 @@ body {
   width: 100%;
 }
 
+.task-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .task {
   background: #f4f4f4;
   margin: 5px;

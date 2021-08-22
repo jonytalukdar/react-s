@@ -1,20 +1,24 @@
 import React from 'react';
+import { FaTimes } from 'react-icons/fa';
 
 const Task = ({ task, onDelete, onToggle }) => {
   const { id, text, day, reminder } = task;
   return (
-    <div
-      className={`task ${reminder ? 'reminder' : ''}`}
-      onClick={() => onToggle(id)}
-    >
-      <h3>
-        {text}
-        <button onClick={() => onDelete(id)}>
-          <i className="fas fa-trash-alt fa-2x"></i>
-        </button>
-      </h3>
-      <p>{day}</p>
-    </div>
+    <>
+      <div className="task-container">
+        <div
+          className={`task ${reminder ? 'reminder' : ''}`}
+          onClick={() => onToggle(id)}
+        >
+          <h3>{text}</h3>
+          <p>{day}</p>
+        </div>
+        <FaTimes
+          style={{ cursor: 'pointer', color: 'red' }}
+          onClick={() => onDelete(id)}
+        />
+      </div>
+    </>
   );
 };
 
