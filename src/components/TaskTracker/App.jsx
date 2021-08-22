@@ -4,27 +4,6 @@ import Header from './Header';
 import './style.css';
 import Tasks from './Tasks';
 
-const tasksData = [
-  {
-    id: 1,
-    text: 'Doctors Appointment',
-    day: 'Feb 5th at 2:30pm',
-    reminder: true,
-  },
-  {
-    id: 2,
-    text: 'Meeting at School',
-    day: 'Feb 6th at 1:30pm',
-    reminder: true,
-  },
-  {
-    id: 3,
-    text: 'Meeting at Feridns',
-    day: 'Feb 7th at 1:30pm',
-    reminder: false,
-  },
-];
-
 const App = () => {
   const [tasks, setTasks] = useState([]);
   const [showAddTask, setShowAddTask] = useState(false);
@@ -37,6 +16,7 @@ const App = () => {
       });
   }, []);
 
+  // delete task
   const deleteTask = (id) => {
     fetch(`http://localhost:5000/tasks/${id}`, {
       method: 'DELETE',
@@ -46,14 +26,36 @@ const App = () => {
     setTasks(removedTask);
   };
 
-  const toggleReminder = (id) => {
+  // toggle reminder
+  const fetchTask = async (id) => {
+    const res = await fetch(`http://localhost:5000/tasks/${id}`);
+    const data = await res.json();
+
+    return data;
+  };
+  // Toggle Reminder
+  const toggleReminder = async (id) => {
+    const taskToToggle = await fetchTask(id);
+    const updTask = { ...taskToToggle, reminder: !taskToToggle.reminder };
+
+    const res = await fetch(`http://localhost:5000/tasks/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify(updTask),
+    });
+
+    const data = await res.json();
+
     setTasks(
       tasks.map((task) =>
-        task.id === id ? { ...task, reminder: !task.reminder } : task
+        task.id === id ? { ...task, reminder: data.reminder } : task
       )
     );
   };
 
+  // add task
   const addTask = (taskData) => {
     fetch('http://localhost:5000/tasks', {
       method: 'POST',
@@ -70,6 +72,7 @@ const App = () => {
       });
   };
 
+  // showToggle
   const showToggle = () => {
     setShowAddTask(!showAddTask);
   };
