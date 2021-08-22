@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import AddTask from './AddTask';
 import Header from './Header';
 import './style.css';
 import Tasks from './Tasks';
@@ -26,6 +27,7 @@ const tasksData = [
 
 const App = () => {
   const [tasks, setTasks] = useState(tasksData);
+  const [showAddTask, setShowAddTask] = useState(false);
 
   const deleteTask = (id) => {
     const removedTask = tasks.filter((task) => id !== task.id);
@@ -40,9 +42,24 @@ const App = () => {
     );
   };
 
+  const addTask = (taskData) => {
+    setTasks((prevState) => {
+      return [taskData, ...prevState];
+    });
+  };
+
+  const showToggle = () => {
+    setShowAddTask(!showAddTask);
+  };
+
   return (
     <div className="container">
-      <Header title="Task Tracker" />
+      <Header
+        title="Task Tracker"
+        onShowToggle={showToggle}
+        showTask={showAddTask}
+      />
+      {showAddTask && <AddTask onTask={addTask} />}
       {tasks.length > 0 ? (
         <Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} />
       ) : (

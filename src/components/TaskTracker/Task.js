@@ -5,7 +5,7 @@ const Task = ({ task, onDelete, onToggle }) => {
   return (
     <div
       className={`task ${reminder ? 'reminder' : ''}`}
-      onDoubleClick={() => onToggle(id)}
+      onClick={() => onToggle(id)}
     >
       <h3>
         {text}

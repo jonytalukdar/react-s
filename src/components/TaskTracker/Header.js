@@ -2,20 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 
-const Header = ({ title }) => {
-  const onClick = () => {
-    console.log('click');
-  };
+const Header = ({ title, onShowToggle, showTask }) => {
   return (
     <header className="header">
       <h1>{title}</h1>
-      <Button text="Add" color="blue" onClick={onClick} />
+      <Button
+        text={showTask ? 'Close' : 'Add'}
+        color={showTask ? 'green' : 'blue'}
+        onClick={onShowToggle}
+      />
     </header>
   );
 };
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  onShowToggle: PropTypes.func.isRequired,
+  showAddTask: PropTypes.bool.isRequired,
 };
 
 export default Header;
