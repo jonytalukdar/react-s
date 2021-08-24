@@ -1,9 +1,9 @@
 import React from 'react';
-import TaskTracker from './components/TaskTracker/App';
+import Lifting from './components/Lifting-State/Calculator';
 const App = () => {
   return (
     <>
-      <TaskTracker />
+      <Lifting />
     </>
   );
 };
