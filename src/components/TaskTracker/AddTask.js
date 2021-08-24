@@ -1,33 +1,27 @@
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 const AddTask = ({ onTask }) => {
-  const [task, setTask] = useState('');
-  const [date, setDate] = useState('');
-  const [reminder, setReminder] = useState(false);
-
-  const taskHandler = (e) => {
-    setTask(e.target.value);
-  };
-
-  const dateHandler = (e) => {
-    setDate(e.target.value);
-  };
-
-  const reminderHandler = (e) => {
-    setReminder(e.currentTarget.checked);
-  };
+  const taskInputRef = useRef();
+  const dateInputRef = useRef();
+  const reminderInputRef = useRef(false);
 
   const addTask = (e) => {
     e.preventDefault();
+
+    const task = taskInputRef.current.value;
+    const date = dateInputRef.current.value;
+    const reminder = reminderInputRef.current.checked;
+
     const taskData = {
       text: task,
       day: date,
       reminder: reminder,
     };
-    setTask('');
-    setDate('');
-    setReminder(false);
+    taskInputRef.current.value = '';
+    dateInputRef.current.value = '';
+    reminderInputRef.current.checked = false;
+
     onTask(taskData);
   };
 
@@ -35,32 +29,21 @@ const AddTask = ({ onTask }) => {
     <form onSubmit={addTask}>
       <div className="form-control">
         <label>Task</label>
-        <input
-          type="text"
-          placeholder="Add Task"
-          value={task}
-          onChange={taskHandler}
-        />
+        <input type="text" placeholder="Add Task" ref={taskInputRef} />
       </div>
       <div className="form-control">
         <label>Time And Date</label>
-        <input
-          type="text"
-          placeholder="Add Date"
-          value={date}
-          onChange={dateHandler}
-        />
+        <input type="text" placeholder="Add Date" ref={dateInputRef} />
       </div>
       <div className="form-control-check">
         <label>Reminder</label>
         <input
           type="checkbox"
-          checked={reminder}
-          value={reminder}
-          onChange={reminderHandler}
+          value={reminderInputRef}
+          ref={reminderInputRef}
         />
       </div>
-      <button className="btn btn-block" type="submit" disabled={!task}>
+      <button className="btn btn-block" type="submit">
         Save
       </button>
     </form>
