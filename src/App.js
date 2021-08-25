@@ -1,9 +1,9 @@
 import React from 'react';
-import TaskTracker from './components/TaskTracker/App';
+import UseReducer from './components/UseReducer/UseReducer';
 const App = () => {
   return (
     <>
-      <TaskTracker />
+      <UseReducer />
     </>
   );
 };
