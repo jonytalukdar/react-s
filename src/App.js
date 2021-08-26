@@ -1,9 +1,9 @@
 import React from 'react';
-import Calulcator from './components/Inheritange/Calculator';
+import RenderProps from './components/Render-Props/App';
 const App = () => {
   return (
     <>
-      <Calulcator />
+      <RenderProps />
     </>
   );
 };
