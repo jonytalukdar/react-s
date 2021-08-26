@@ -1,9 +1,9 @@
 import React from 'react';
-import UseReducer from './components/UseReducer/UseReducer';
+import Calulcator from './components/Inheritange/Calculator';
 const App = () => {
   return (
     <>
-      <UseReducer />
+      <Calulcator />
     </>
   );
 };
