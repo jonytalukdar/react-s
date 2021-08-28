@@ -1,9 +1,9 @@
 import React from 'react';
-import RenderProps from './components/Render-Props/App';
+import ContextApi from './components/ContextApi/App';
 const App = () => {
   return (
     <>
-      <RenderProps />
+      <ContextApi />
     </>
   );
 };

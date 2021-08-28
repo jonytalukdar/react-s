@@ -1,14 +1,22 @@
-import React from 'react';
 import ClickCounter from './ClickCounter';
+import Counter from './Counter';
 import HoverCounter from './HoverCounter';
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <ClickCounter />
-      <HoverCounter />
+    <div className="app">
+      <Counter>
+        {(counter, incrementCount) => (
+          <ClickCounter count={counter} incrementCount={incrementCount} />
+        )}
+      </Counter>
+      <Counter>
+        {(counter, incrementCount) => (
+          <HoverCounter count={counter} incrementCount={incrementCount} />
+        )}
+      </Counter>
     </div>
   );
-};
+}
 
 export default App;

@@ -1,24 +1,9 @@
 import React from 'react';
 
-class HoverCounter extends React.Component {
-  state = {
-    count: 0,
-  };
-
-  handleClick = () => {
-    this.setState((prevState) => {
-      return { ...prevState, count: prevState.count + 1 };
-    });
-  };
-
-  render() {
-    const { count } = this.state;
-    return (
-      <div>
-        <button onMouseMove={this.handleClick}>Click {count} Times</button>
-      </div>
-    );
-  }
+export default function HoverCounter({ count, incrementCount }) {
+  return (
+    <div>
+      <h1 onMouseOver={incrementCount}>Hovered {count} times</h1>
+    </div>
+  );
 }
-
-export default HoverCounter;
