@@ -1,9 +1,9 @@
 import React from 'react';
-import Hooks from './components/Hooks/App';
+import ReduxContext from './components/ReduxContext/App';
 const App = () => {
   return (
     <>
-      <Hooks />
+      <ReduxContext />
     </>
   );
 };
