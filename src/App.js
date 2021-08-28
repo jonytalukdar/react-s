@@ -1,9 +1,9 @@
 import React from 'react';
-import ContextApi from './components/ContextApi/App';
+import Hooks from './components/Hooks/App';
 const App = () => {
   return (
     <>
-      <ContextApi />
+      <Hooks />
     </>
   );
 };
